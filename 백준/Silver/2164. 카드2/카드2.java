@@ -17,8 +17,7 @@ public class Main {
 		}
 		
 		while (q.size() > 1) {
-			q.poll();
-			//if (q.size() == 1); break;
+			q.remove();
 			q.offer(q.poll());
 		}
 		
