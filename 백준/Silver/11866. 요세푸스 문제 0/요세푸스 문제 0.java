@@ -37,7 +37,7 @@ public class Main {
 		while (queue.size() != 0) {
 			num++;
 			if (num % K == 0) {
-				sb.append(queue.remove()+", ");
+				sb.append(queue.remove()).append(", ");
 			} else queue.add(queue.poll());
 		}
 		
