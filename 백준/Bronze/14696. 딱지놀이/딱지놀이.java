@@ -8,8 +8,19 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine()); 
 		for (int tc = 1; tc <= N; tc++) {
-			String numA = br.readLine().replace(" ", "");
-			String numB = br.readLine().replace(" ", "");
+			//String numA = br.readLine().replace(" ", "");
+			
+			StringBuilder sb1 = new StringBuilder();
+			sb1.append(br.readLine().replace(" ", ""));
+			sb1.deleteCharAt(0);
+			
+			String numA = sb1.toString();
+			
+			StringBuilder sb2 = new StringBuilder();
+			sb2.append(br.readLine().replace(" ", ""));
+			sb2.deleteCharAt(0);
+			
+			String numB = sb2.toString();
 			
 			int starA = numA.length() - numA.replace("4", "").length();
 			int starB = numB.length() - numB.replace("4", "").length();
@@ -32,7 +43,7 @@ public class Main {
 			} else if (starA == starB && circleA == circleB && squareA != squareB) {
 				if (squareA > squareB) System.out.println("A");
 				else System.out.println("B");
-			} else if (starA == starB && circleA != circleB && squareA == squareB && triA != triB) {
+			} else if (starA == starB && circleA == circleB && squareA == squareB && triA != triB) {
 				if (triA > triB) System.out.println("A");
 				else System.out.println("B");
 			} else {
