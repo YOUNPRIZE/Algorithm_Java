@@ -17,7 +17,7 @@ class Solution {
 			for (int i = 0; i < str.length(); i++) {
 				if (str.charAt(i) == '+' || str.charAt(i) == '*') {
 					if (str.charAt(i) == '+') {
-						while (!stack.isEmpty() && stack.peek() != '(') {
+						while (!stack.isEmpty()) {
 							post = post + stack.pop();
 						}
 						stack.push('+');
