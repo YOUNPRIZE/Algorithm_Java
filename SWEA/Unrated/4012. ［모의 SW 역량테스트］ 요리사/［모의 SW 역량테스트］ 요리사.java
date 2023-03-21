@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 // 4012. 요리사
@@ -21,19 +20,20 @@ public class Solution {
 				}
 			}
 			check = 0;
-			
 			min = Integer.MAX_VALUE;
 			recur(0, 0);
 			System.out.printf("#%d %d\n", tc, min);
 		}
 	}
 	
+	// N개의 식재료를 N/2씩 두 그룹으로 나누는 메소드
 	public static void recur(int idx, int sidx) {
+		// N개 중 N/2 씩 두 그룹으로 뽑을 때 절반 이상은 중복되므로 return 해준다.
 		if (check >= comb(N)/2) return;
 		// base case
+		// 전부 뽑았을 때
 		if (sidx == N/2) {
-//			System.out.print("ingA : ");
-//			System.out.print(Arrays.toString(ingA));
+			// 안뽑힌 것에 대해 dselect 배열을 초기화 해준다.
 			int index = 0;
 			for (int i = 0; i < N; i++) {
 				boolean check = false;
@@ -42,37 +42,35 @@ public class Solution {
 				}
 				if(!check) ingB[index++] = i+1;
 			}
-//			System.out.print(", ingB : ");
-//			System.out.println(Arrays.toString(ingB));
 			
+			// A, B 그룹으로 나뉘었을 때 시너지 계산을 해주는 과정
 			cntA = 0;
 			cntB = 0;
 			recur2(0, 0, ingA, 'A');
-//			System.out.print("fasdfasdfasdf");
-//			System.out.println(cntA);
 			recur2(0, 0, ingB, 'B');
-//			System.out.print("fasdfasdfasdf");
-//			System.out.println(cntB);
+			
+			// min 값을 A,B 시너치차와 비교를 통해 계속해서 update
 			min = Math.min(Math.abs(cntA-cntB), min);
 			check++;
 			return;
 			
 		}
+		// 전부 고려했을 때
 		if (idx == N) return;
 		
 		// recursive case
 		ingA[sidx] = idx + 1;
 		recur(idx + 1, sidx + 1);
-		ingB[sidx] = idx + 1;
 		recur(idx + 1, sidx);
 	}
 	
+	// 시너지 전부 더해주는 메소드
 	public static void recur2(int idx, int sidx, int[] arr, char AB) {
 		// base case
+		// 전부 뽑았을 때
 		if (sidx == 2) {
+			// 시너지 전부 더해주는 과정
 			for (int i = 0; i < arr.length; i++) {
-//				System.out.println(Arrays.toString(coor));
-				
 				if (AB == 'A') {
 					cntA += graph[coor[0]-1][coor[1]-1];
 					cntA += graph[coor[1]-1][coor[0]-1];
@@ -83,6 +81,7 @@ public class Solution {
 				return;
 			}
 		}
+		// 전부 고려했을 때
 		if (idx == arr.length) return;
 		
 		// recursive case
@@ -90,6 +89,8 @@ public class Solution {
 		recur2(idx + 1, sidx + 1, arr, AB);
 		recur2(idx + 1, sidx, arr, AB);
 	}
+	
+	// N개 중 N/2개 뽑을 때의 경우의 수
 	public static int comb(int N) {
 		int num = 1;
 		int mid = N / 2;
