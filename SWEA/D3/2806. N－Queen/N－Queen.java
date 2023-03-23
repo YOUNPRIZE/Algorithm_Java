@@ -25,6 +25,7 @@ public class Solution {
 			cnt++;
 			return;
 		}
+		// recursive case
 		for (int i = 0; i < N; i++) {
 			if (visitY[i] || visitRightUp[i+num] || visitRightDown[num-i+N-1]) continue;
 			visitY[i] = true;
