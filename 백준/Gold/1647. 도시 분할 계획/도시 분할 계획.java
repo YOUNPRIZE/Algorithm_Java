@@ -14,7 +14,7 @@ public class Main {
 		// 간선의 개수
 		E = Integer.parseInt(st.nextToken());
 
-		PriorityQueue<Edge> edges = new PriorityQueue<Edge>(E);
+		PriorityQueue<Edge> edges = new PriorityQueue<>();
 
 		int node1, node2;
 		long cost;
