@@ -1,46 +1,33 @@
 import java.util.Scanner;
 
 public class Solution {
-	static int T,N,L,max;
-	static boolean[] use;
-	static int[] grade, cal;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		T = sc.nextInt();
+		StringBuilder sb = new StringBuilder();
+		int T = sc.nextInt();
 		for (int tc = 1; tc <= T; tc++) {
-			N = sc.nextInt();
-			grade = new int[N];
-			cal = new int[N];
-			use = new boolean[N];
-			L = sc.nextInt();
-			for (int i = 0 ; i < N; i++) {
-				grade[i] = sc.nextInt();
-				cal[i] = sc.nextInt();
-			}
-			max = Integer.MIN_VALUE;
-			recur(0);
-			System.out.printf("#%d %d\n", tc, max);
-		}
-	}
-	public static void recur(int idx) {
-		// base case
-		if (idx == N) {
-			int cntCal = 0;
-			int cntGrade = 0;
+			sb.append("#").append(tc).append(" ");
+			int N = sc.nextInt();
+			int L = sc.nextInt();
+			int[][] dp = new int[N][L];
 			for (int i = 0; i < N; i++) {
-				// 사용했다면
-				if(use[i]) {
-					cntCal += cal[i];
-					cntGrade += grade[i];
+				int Ti = sc.nextInt();
+				int Ki = sc.nextInt();
+				
+				for (int j = 0; j < L; j++) {
+					if (i == 0) {
+						if (j >= Ki) {
+							dp[i][j] = Ti;
+						}
+					} else {
+						if (j >= Ki) dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-Ki] + Ti);
+						else dp[i][j] = dp[i-1][j];
+					}
 				}
 			}
-			if (cntCal <= L) max = Math.max(max, cntGrade);
-			return;
+			sb.append(dp[N-1][L-1]).append("\n");
+//			System.out.println(dp[N-1][L-1]);
 		}
-		// recur case
-		use[idx] = true;
-		recur(idx + 1);
-		use[idx] = false;
-		recur(idx + 1);
+		System.out.println(sb.toString());
 	}
 }
