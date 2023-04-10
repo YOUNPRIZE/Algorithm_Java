@@ -1,14 +1,19 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		int N = Integer.parseInt(br.readLine());
 		int[][] dp = new int[N][3];
 		for (int i = 0; i < N; i++) {
 			int[] RGB = new int[3];
+			st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < 3; j++) {
-				RGB[j] = sc.nextInt();
+				RGB[j] = Integer.parseInt(st.nextToken());
 				if (i == 0) {
 					dp[i][0] = RGB[0];
 					dp[i][1] = RGB[1];
