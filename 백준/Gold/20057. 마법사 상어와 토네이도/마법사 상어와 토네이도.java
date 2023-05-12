@@ -10,7 +10,6 @@ public class Main {
 	static int[][] graph;
 	static int[] dx = {0, 1, 0, -1};
 	static int[] dy = {-1, 0, 1, 0};
-	static int ans = 0;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
@@ -31,8 +30,7 @@ public class Main {
 				end += graph[i][j];
 			}
 		}
-//		System.out.println(start - end);
-		System.out.println(ans);
+		System.out.println(start - end);
 	}
 	
 	public static void move(int x, int y) {
@@ -48,10 +46,7 @@ public class Main {
 				
 				cx = cx + dx[dir];
 				cy = cy + dy[dir];
-//				System.out.println(cx + " " + cy);
 				tornado(dir, cx, cy);
-//				for (int j = 0; j < N; j++) System.out.println(Arrays.toString(graph[j]));
-//				System.out.println();
 				if (cx == 0 && cy == 0) break loop;
 			}
 			dir++;
@@ -76,7 +71,6 @@ public class Main {
 							total += perc;
 							// 벗어나지 않았을 때
 							if (!escape(i, j)) graph[i][j] += perc;
-							else ans += perc;
 						// 5%
 						} else if (i == nx) {
 							if (j == ny - 2) {
@@ -84,7 +78,6 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						} else {
 							// 10%
@@ -93,21 +86,18 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							// 7%
 							} else if (j == ny) {
 								int perc = (graph[nx][ny] * 7) / 100;
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							// 1%
 							} else {
 								int perc = (graph[nx][ny] * 1) / 100;
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						}
 					}
@@ -116,7 +106,6 @@ public class Main {
 				else blank++;
 			}
 			if (!escape(nx, ny-1)) graph[nx][ny-1] += graph[nx][ny] - total;
-			else ans += graph[nx][ny] - total;
 			graph[nx][ny] = 0;
 		// 아래 방향일 때
 		} else if (dir == 1) {
@@ -131,7 +120,6 @@ public class Main {
 							total += perc;
 							// 벗어나지 않았을 때
 							if (!escape(i, j)) graph[i][j] += perc;
-							else ans += perc;
 						// 1%
 						} else if (i == nx - 1) {
 							if (j == ny - 1 || j == ny + 1) {
@@ -139,7 +127,6 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						// 2% 랑 7%
 						} else if (i == nx) {
@@ -149,14 +136,12 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							// 7%
 							} else if (j == ny - 1 || j == ny + 1) {
 								int perc = (graph[nx][ny] * 7) / 100;
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						} else if (i == nx + 1) {
 							// 10%
@@ -165,7 +150,6 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						}
 					}
@@ -174,7 +158,6 @@ public class Main {
 				else blank++;
 			}
 			if (!escape(nx+1, ny)) graph[nx+1][ny] += graph[nx][ny] - total;
-			else ans += graph[nx][ny] - total;
 			graph[nx][ny] = 0;
 		// 오른쪽 방향일 때
 		} else if (dir == 2) {
@@ -190,7 +173,6 @@ public class Main {
 							total += perc;
 							// 벗어나지 않았을 때
 							if (!escape(i, j)) graph[i][j] += perc;
-							else ans += perc;
 						// 5%
 						} else if (i == nx) {
 							if (j == ny + 2) {
@@ -198,7 +180,6 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						} else {
 							// 1%
@@ -207,21 +188,18 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							// 7%
 							} else if (j == ny) {
 								int perc = (graph[nx][ny] * 7) / 100;
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							// 10%
 							} else {
 								int perc = (graph[nx][ny] * 10) / 100;
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						}
 					}
@@ -230,7 +208,6 @@ public class Main {
 				else blank++;
 			}
 			if (!escape(nx, ny+1)) graph[nx][ny+1] += graph[nx][ny] - total;
-			else ans += graph[nx][ny] - total;
 			graph[nx][ny] = 0;
 		// 위쪽 방향일 때
 		} else {
@@ -246,7 +223,6 @@ public class Main {
 							total += perc;
 							// 벗어나지 않았을 때
 							if (!escape(i, j)) graph[i][j] += perc;
-							else ans += perc;
 						// 10%
 						} else if (i == nx - 1) {
 							if (j == ny - 1 || j == ny + 1) {
@@ -254,7 +230,6 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						// 2% 랑 7%
 						} else if (i == nx) {
@@ -264,14 +239,12 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							// 7%
 							} else if (j == ny - 1 || j == ny + 1) {
 								int perc = (graph[nx][ny] * 7) / 100;
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						} else if (i == nx + 1) {
 							// 1%
@@ -280,7 +253,6 @@ public class Main {
 								total += perc;
 								// 벗어나지 않았을 때
 								if (!escape(i, j)) graph[i][j] += perc;
-								else ans += perc;
 							}
 						}
 					}
@@ -289,7 +261,6 @@ public class Main {
 				else blank++;
 			}
 			if (!escape(nx-1, ny)) graph[nx-1][ny] += graph[nx][ny] - total;
-			else ans += graph[nx][ny] - total;
 			graph[nx][ny] = 0;
 		}
 	}
