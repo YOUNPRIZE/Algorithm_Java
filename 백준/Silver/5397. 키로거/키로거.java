@@ -9,10 +9,10 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
+        stack = new Stack<>();
+        temp = new Stack<>();
         for (int i = 0; i < N; i++) {
             String str = br.readLine();
-            stack = new Stack<>();
-            temp = new Stack<>();
             for (int j = 0; j < str.length(); j++) {
                 char pw = str.charAt(j);
                 switch (pw) {
@@ -43,8 +43,6 @@ public class Main {
             sb.reverse();
             System.out.println(sb.toString());
             sb.setLength(0);
-//            sb.append("\n");
         }
-//        System.out.println(sb.toString());
     }
 }
